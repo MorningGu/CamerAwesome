@@ -48,6 +48,7 @@ class _CameraPageState extends State<CameraPage> {
           aspectRatio: CameraAspectRatios.ratio_16_9,
         ),
         previewFit: CameraPreviewFit.fitWidth,
+        previewAlignment: Alignment.center,
         onMediaTap: (mediaCapture) {
           mediaCapture.captureRequest
               .when(single: (single) => single.file?.open());
@@ -99,7 +100,7 @@ class _CameraPageState extends State<CameraPage> {
   Future _processImageBarcode(AnalysisImage img) async {
     try {
       var recognizedBarCodes =
-          await _barcodeScanner.processImage(img.toInputImage());
+      await _barcodeScanner.processImage(img.toInputImage());
       setState(() {
         _barcodes = recognizedBarCodes;
         _image = img;
